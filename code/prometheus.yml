@@ -1,15 +1,19 @@
 global:
+  #how often prometheus checks for new metrics for dashboard for back-end
   scrape_interval: 5s
 
+#connects alertmanager to the alert rules
 rule_files:
   - alerts.yml
 
+#connects prometheus to alertmanager
 alerting:
   alertmanagers:
     - scheme: http
       static_configs:
         - targets: [ 'alertmanager:9093' ]
 
+#back-end target for prometheus
 scrape_configs:
   - job_name: 'flask-app'
     static_configs:
