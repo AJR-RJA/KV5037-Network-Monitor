@@ -1,0 +1,18 @@
+Grafana dashboard- http://localhost:3000
+Prometheus metrics- http://localhost:9090
+Flask app metrics- http://localhost:8000/metrics'
+
+Start everything- cd /home/rootuser/Desktop/code && sudo docker compose up
+
+Stop everything- sudo docker compose down
+
+Restart everything- sudo docker compose down && sudo docker compose up
+
+Rebuild after changes- sudo docker compose down && sudo docker compose build && sudo docker compose up
+
+Check containers are running- sudo docker compose ps
+Check flask logs- sudo docker compose logs flask
+Check prometheus logs- sudo docker compose logs prometheus
+Check all logs- sudo docker compose logs
+
+

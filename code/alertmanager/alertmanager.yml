@@ -1,0 +1,21 @@
+global:
+  smtp_smarthost: 'smtp.gmail.com:587'
+  smtp_from: 'Dashboard.Alerts12@gmail.com'
+  smtp_auth_username: 'Dashboard.Alerts12@gmail.com'
+  #smtp_auth_password: ${SMTP_PASS}
+  smtp_auth_password: 'bnel bemp tnro ocxr' #unsecure af replace with .env var 
+  smtp_require_tls: true
+  smtp_hello: 'localhost'
+
+route:
+  receiver: 'email'
+  repeat_interval: 4h
+  group_wait: 15s
+  group_interval: 15s
+
+receivers:
+  - name: 'email'
+    email_configs:
+      - to: 'Dashboard.Alerts12@gmail.com'
+        headers:
+          subject: 'Prometheus Mail Alerts'
