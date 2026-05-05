@@ -1,0 +1,21 @@
+global:
+  # how often prometheus scrapes metrics from the back-end
+  scrape_interval: 5s
+
+# connects alert rules to prometheus
+rule_files:
+  - alerts.yml
+
+# connects prometheus to alertmanager
+alerting:
+  alertmanagers:
+    - scheme: http
+      static_configs:
+        - targets: ['alertmanager:9093']
+
+# back-end target for prometheus
+# flask uses network_mode: host so it is reachable via host.docker.internal
+scrape_configs:
+  - job_name: 'flask-app'
+    static_configs:
+      - targets: ['host.docker.internal:8000']
