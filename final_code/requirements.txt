@@ -1,0 +1,6 @@
+flask
+prometheus_client
+scapy
+requests
+certifi
+urllib3

@@ -1,0 +1,23 @@
+#rules for when an alert is sent
+groups:
+- name: alert_rules
+  rules:
+    #when the back-end is down for more than 15 secs
+    - alert: InstanceDown
+      expr: up == 0
+      for: 15s
+      labels:
+        severity: critical
+      annotations:
+        summary: "Instance [{{ $labels.instance }}] down"
+        description: "[{{ $labels.instance }}] of job {{ $labels.job }} has been down for more than 15 seconds."
+
+    - alert: ConnectedRogue
+      expr: increase(network_device_events_total{whitelisted="false"}[10m]) > 5
+      for: 15s
+      labels:
+        severity: critical
+      annotations:
+        summary: "Rogue device connected"
+        description: "lol"
+
