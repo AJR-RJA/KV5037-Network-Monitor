@@ -1,0 +1,52 @@
+Grafana dashboard- http://localhost:3000
+Prometheus metrics- http://localhost:9090
+Flask app metrics- http://localhost:8000/metrics
+
+Start everything- 'cd' in Docker directory
+
+Stop everything- sudo docker compose down
+
+Restart everything- sudo docker compose down && sudo docker compose up
+
+Rebuild after changes- sudo docker compose down && sudo docker compose build && sudo docker compose up
+
+Check containers are running- sudo docker compose ps
+Check flask logs- sudo docker compose logs flask
+Check prometheus logs- sudo docker compose logs prometheus
+Check all logs- sudo docker compose logs
+
+Importing prometheus data-
+Add the data source Prometheus.
+In the URL section put- http://localhost:9090
+save and test
+
+Importing dashboard-
+Select dashboards on side bar and click create dashboard
+Select import dashboard
+Upload JSON file in code directory (MAC address Monitor import dashboard.json)
+Select Prometheus as data source
+
+
+Creating new dashboard pt.1-
+Add new 
+Add visualisation
+Select Prometheus
+Choose the "Stat" visualisation option
+select the metric-
+"network_rogue_devices_seen"
+Save dashboard
+
+Creating new dashboard pt.2- 
+Choose the "stat" visualisation option
+select the metric-
+"network_allowed_devices_seen"
+Save
+
+Creating new Dashboard pt.3- 
+Choose the "time series" visualisation option
+Select the metric-
+"network_device_events_total"
+Save
+
+Now you will have 3 comprehensive panels in the dashboard, the first for showing total number of rogue devices, the second for the total number of authorised devices connected and the third for a total number of connection events.
+

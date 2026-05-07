@@ -1,0 +1,24 @@
+#rules for when an alert is sent
+groups:
+- name: alert_rules
+  rules:
+    #when the back-end is down for more than 15 secs
+    - alert: Instance_Down
+      expr: up == 0
+      for: 15s
+      labels:
+        severity: critical
+      annotations:
+        summary: "Back-end script id dowm"
+        description: "Back-end script (app.py) has been down for more than 15 seconds"
+
+    #when 5 or more rogue devices are detected 
+    - alert: Connected_Rogue
+      expr: increase(network_device_events_total{whitelisted="false"}[10m]) > 5
+      for: 15s
+      labels:
+        severity: critical
+      annotations:
+        summary: "Rogue devices connected"
+        description: "5 or more rogue devices have been detected"
+

@@ -1,0 +1,27 @@
+#details for admin email to allow for smtp
+global:
+  smtp_smarthost: 'smtp.gmail.com:587'
+  smtp_from: 'Dashboard.Alerts12@gmail.com'
+  smtp_auth_username: 'Dashboard.Alerts12@gmail.com'
+  #use app password not login password
+  smtp_auth_password: 'bnel bemp tnro ocxr'
+  smtp_require_tls: true
+  smtp_hello: 'localhost'
+
+#rules for sending alert emails
+route:
+  receiver: 'email'
+  #how often a repeat alert email is sent
+  repeat_interval: 4h
+  #groups multiple alerts sent in short time (30s) into one alert email
+  group_wait: 30s
+  group_interval: 10m
+  group_by: [alerts]
+
+#where the email alerts are sent to 
+receivers:
+  - name: 'email'
+    email_configs:
+      - to: 'Dashboard.Alerts12@gmail.com'
+        headers:
+          subject: 'Mac Network Monitor Alerts'
